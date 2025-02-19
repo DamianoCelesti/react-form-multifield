@@ -38,47 +38,53 @@ const ArticoliForm = () => {
     const [articoli, setArticoli] = useState(articoliIniziali);
     const [formDati, setFormDati] = useState(formDatiInizio);
 
-    function gestioneFormDati(event) {
-
+    function gestioneFormDati(e) {
+        setFormDati((datiFormCorrenti) => ({
+            ...datiFormCorrenti,
+            [e.target.name]: e.target.value,
+        }));
     }
 
-
+    function gestioneInvio(event) {
+        event.preventDefault();
+        setArticoli((articoliCorrenti) => [...articoliCorrenti, { id: articoliCorrenti[articoliCorrenti.length - 1].id + 1, ...formDati }]);
+    }
 
 
     return (
         <>
 
 
-            <form action="#">
+            <form action="#" onSubmit={gestioneInvio}>
                 <input
                     type="text"
-                    name="name"
+                    name="titolo"
                     onChange={gestioneFormDati}
                     value={formDati.titolo}
                     placeholder="inserire titolo"
                 />
                 <input
                     type="text"
-                    name="name"
+                    name="autore"
                     onChange={gestioneFormDati}
                     value={formDati.autore}
                     placeholder="inserire nome"
                 />
                 <textarea
                     type="text"
-                    name="name"
+                    name="contenuto"
                     onChange={gestioneFormDati}
                     value={formDati.contenuto}
                     placeholder="testo"
                 />
                 <input
                     type="text"
-                    name="name"
+                    name="categoria"
                     onChange={gestioneFormDati}
                     value={formDati.categoria}
                     placeholder="genere"
                 />
-                <button>Add</button>
+                <button type="submit">Add</button>
             </form>
             {articoli.map((articolo) => (
                 <div key={articolo.id}>
