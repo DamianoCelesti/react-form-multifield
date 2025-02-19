@@ -25,12 +25,61 @@ const articoliIniziali = [
 ];
 
 
+const formDatiInizio = {
+    titolo: "",
+    autore: "",
+    contenuto: "",
+    categoria: "",
+};
+
+
 const ArticoliForm = () => {
 
     const [articoli, setArticoli] = useState(articoliIniziali);
+    const [formDati, setFormDati] = useState(formDatiInizio);
+
+    function gestioneFormDati(event) {
+
+    }
+
+
+
 
     return (
         <>
+
+
+            <form action="#">
+                <input
+                    type="text"
+                    name="name"
+                    onChange={gestioneFormDati}
+                    value={formDati.titolo}
+                    placeholder="inserire titolo"
+                />
+                <input
+                    type="text"
+                    name="name"
+                    onChange={gestioneFormDati}
+                    value={formDati.autore}
+                    placeholder="inserire nome"
+                />
+                <textarea
+                    type="text"
+                    name="name"
+                    onChange={gestioneFormDati}
+                    value={formDati.contenuto}
+                    placeholder="testo"
+                />
+                <input
+                    type="text"
+                    name="name"
+                    onChange={gestioneFormDati}
+                    value={formDati.categoria}
+                    placeholder="genere"
+                />
+                <button>Add</button>
+            </form>
             {articoli.map((articolo) => (
                 <div key={articolo.id}>
                     <h3>{articolo.titolo}</h3>
